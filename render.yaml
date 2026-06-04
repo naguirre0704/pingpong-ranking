@@ -1,0 +1,24 @@
+# Render Blueprint. Deploys the Rails + React monolith as a Docker web service.
+# Database lives in Supabase (set DATABASE_URL below in the Render dashboard).
+services:
+  - type: web
+    name: pingpong-ranking
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /up
+    envVars:
+      # Rails serves the built Vite assets from /public (no separate CDN).
+      - key: RAILS_SERVE_STATIC_FILES
+        value: "true"
+      - key: RAILS_LOG_TO_STDOUT
+        value: "true"
+      - key: WEB_CONCURRENCY
+        value: "2"
+      # Secrets — set these values in the Render dashboard (sync: false).
+      - key: DATABASE_URL      # Supabase direct connection (port 5432, ?sslmode=require)
+        sync: false
+      - key: APP_PIN           # shared team PIN for writes
+        sync: false
+      - key: RAILS_MASTER_KEY  # contents of config/master.key
+        sync: false

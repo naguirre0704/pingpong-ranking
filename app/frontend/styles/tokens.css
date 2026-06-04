@@ -1,0 +1,73 @@
+/* Tazki Design System · tokens (Brand Book V1.0 · Mayo 2026)
+   Single source of truth for color, type, space, radius, shadow. */
+:root {
+  /* === Brand · Violet === */
+  --tz-violet-50:  #F2F0FF;
+  --tz-violet-100: #E5E0FF;
+  --tz-violet-200: #C9BEFF;
+  --tz-violet-500: #6C5CFF; /* primary */
+  --tz-violet-600: #5746E0; /* hover */
+  --tz-violet-700: #4537B8; /* press */
+
+  /* === Chrome · Navy === */
+  --tz-navy-900: #0B1530;
+  --tz-navy-800: #13213F; /* app bar */
+  --tz-navy-700: #1F2A4A;
+
+  /* === Neutrales === */
+  --tz-bg:        #FAFAFB;
+  --tz-surface:   #FFFFFF;
+  --tz-surface-2: #F5F5F7;
+  --tz-border:    #ECECEF;
+  --tz-fg-1: #0E0E11;
+  --tz-fg-2: #1A1A1F;
+  --tz-fg-3: #4A4A52;
+  --tz-fg-4: #71717A;
+  --tz-fg-5: #A1A1AA;
+  --tz-fg-6: #D4D4D8;
+
+  /* === Semánticos === */
+  --tz-danger:  #E5345E;
+  --tz-success: #16A34A;
+  --tz-info:    #2563EB;
+  --tz-warning: #F4B400;
+  --tz-danger-soft:  #FEEDF1;
+  --tz-success-soft: #E5F7EC;
+  --tz-info-soft:    #E5EEFE;
+  --tz-warning-soft: #FFF7DC;
+
+  /* === Type === */
+  --tz-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --tz-text-xs:  12px;
+  --tz-text-sm:  13px;
+  --tz-text-md:  14px;
+  --tz-text-lg:  16px;
+  --tz-text-xl:  clamp(18px, 1.6vw + 12px, 20px);
+  --tz-text-2xl: clamp(20px, 2vw + 12px, 24px);
+  --tz-text-3xl: clamp(24px, 2.5vw + 12px, 30px);
+  --tz-text-4xl: clamp(30px, 4vw + 16px, 40px);
+
+  /* === Espacio (4px grid) === */
+  --tz-space-1:  4px;
+  --tz-space-2:  8px;
+  --tz-space-3:  12px;
+  --tz-space-4:  16px;
+  --tz-space-5:  20px;
+  --tz-space-6:  24px;
+  --tz-space-8:  32px;
+  --tz-space-10: 40px;
+  --tz-space-12: 48px;
+  --tz-space-16: 64px;
+
+  /* === Radios === */
+  --tz-radius-sm:   6px;
+  --tz-radius-md:  10px;
+  --tz-radius-lg:  14px;
+  --tz-radius-xl:  20px;
+  --tz-radius-pill: 999px;
+
+  /* === Sombras (sistema casi plano) === */
+  --tz-shadow-card:  0 1px 0 rgba(15, 23, 42, .03);
+  --tz-shadow-pop:   0 8px 24px -8px rgba(15, 23, 42, .12);
+  --tz-shadow-modal: 0 24px 64px -16px rgba(15, 23, 42, .25);
+}
