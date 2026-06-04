@@ -65,8 +65,8 @@ export function PlayersPage() {
           <div className="player-row" key={p.id}>
             <div className="player-row__info">
               <div className="player-row__name">{p.name}</div>
-              <div className="player-row__meta tnum">
-                {p.age} años · {HAND_LABEL[p.dominant_hand]}
+              <div className="player-row__meta">
+                {HAND_LABEL[p.dominant_hand]}
               </div>
             </div>
             <button className="icon-btn" aria-label="Editar" onClick={() => openEdit(p)}>
@@ -93,7 +93,6 @@ export function PlayersPage() {
 
 function PlayerForm({ initial, onSave, onCancel, busy }) {
   const [name, setName] = useState(initial.name || '')
-  const [age, setAge] = useState(initial.age || '')
   const [hand, setHand] = useState(initial.dominant_hand || 'right')
   const [error, setError] = useState('')
 
@@ -101,13 +100,13 @@ function PlayerForm({ initial, onSave, onCancel, busy }) {
     e.preventDefault()
     setError('')
     try {
-      await onSave({ name: name.trim(), age: Number(age), dominant_hand: hand })
+      await onSave({ name: name.trim(), dominant_hand: hand })
     } catch (err) {
       setError(err.message)
     }
   }
 
-  const valid = name.trim() && age
+  const valid = name.trim()
 
   return (
     <div className="sheet" role="dialog" aria-modal="true">
@@ -118,11 +117,6 @@ function PlayerForm({ initial, onSave, onCancel, busy }) {
         <div className="field">
           <span className="field__label">Nombre</span>
           <input className="input" value={name} autoFocus onChange={(e) => setName(e.target.value)} />
-        </div>
-        <div className="field">
-          <span className="field__label">Edad</span>
-          <input className="input tnum" inputMode="numeric" value={age}
-            onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} />
         </div>
         <div className="field">
           <span className="field__label">Mano hábil</span>

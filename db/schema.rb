@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_04_000002) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_04_000003) do
   create_table "matches", force: :cascade do |t|
     t.integer "winner_id", null: false
     t.integer "loser_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_04_000002) do
 
   create_table "players", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "age", null: false
+    t.integer "age"
     t.string "dominant_hand", null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false

@@ -5,7 +5,8 @@ class Player < ApplicationRecord
   has_many :lost_matches, class_name: "Match", foreign_key: :loser_id,  dependent: :restrict_with_error
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :age, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 120 }
+  # Age is kept in the DB but optional (no longer collected in the product).
+  validates :age, numericality: { only_integer: true, greater_than: 0, less_than: 120 }, allow_nil: true
   validates :dominant_hand, presence: true, inclusion: { in: DOMINANT_HANDS }
 
   scope :active, -> { where(active: true) }
