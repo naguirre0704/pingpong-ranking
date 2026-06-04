@@ -121,6 +121,10 @@
 
 /* ---- Forms ---- */
 .toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--tz-space-2); }
+.input--leading {
+  border-color: var(--tz-success);
+  background: var(--tz-success-soft);
+}
 .toggle-opt {
   height: 48px;
   border: 1px solid var(--tz-border);
