@@ -1,15 +1,16 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { BottomNav } from './BottomNav'
+import logoUrl from '~/images/tazki-logo.png'
 
 export function Layout() {
   return (
     <div className="app">
       <header className="appbar">
-        <span className="appbar__mark">T</span>
-        <span className="appbar__title">Pingpong</span>
+        <img className="appbar__logo" src={logoUrl} alt="Tazki" />
+        <span className="appbar__divider" />
+        <span className="appbar__app">Pingpong</span>
         <span className="appbar__spacer" />
-        <span className="eyebrow" style={{ color: 'rgba(255,255,255,.55)' }}>OFICINA</span>
       </header>
 
       <main className="app__main">

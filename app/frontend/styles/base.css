@@ -32,7 +32,7 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -.02em; font-weight: 600; }
   padding: var(--tz-space-5) var(--tz-space-4) calc(72px + env(safe-area-inset-bottom));
 }
 
-/* ---- App bar (navy chrome) ---- */
+/* ---- App bar (light surface · Tazki lockup on light) ---- */
 .appbar {
   position: sticky;
   top: 0;
@@ -40,23 +40,28 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -.02em; font-weight: 600; }
   display: flex;
   align-items: center;
   gap: var(--tz-space-3);
-  padding: var(--tz-space-4);
-  padding-top: calc(var(--tz-space-4) + env(safe-area-inset-top));
-  background: var(--tz-navy-800);
-  color: #fff;
+  padding: var(--tz-space-3) var(--tz-space-4);
+  padding-top: calc(var(--tz-space-3) + env(safe-area-inset-top));
+  background: var(--tz-surface);
+  border-bottom: 1px solid var(--tz-border);
 }
-.appbar__mark {
-  width: 28px; height: 28px;
-  border-radius: var(--tz-radius-pill);
-  background: var(--tz-navy-900);
-  display: grid; place-items: center;
-  font-weight: 700; font-size: 13px; color: #fff;
+.appbar__logo {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+.appbar__divider {
+  width: 1px;
+  height: 18px;
+  background: var(--tz-border);
   flex: 0 0 auto;
 }
-.appbar__title {
-  font-size: var(--tz-text-lg);
+.appbar__app {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: -.01em;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--tz-fg-4);
 }
 .appbar__spacer { flex: 1; }
 
