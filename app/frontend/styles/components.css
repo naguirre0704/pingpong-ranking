@@ -96,11 +96,14 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--tz-space-2);
+  min-width: 0;
 }
 .match-card__names {
   font-size: var(--tz-text-md);
   font-weight: 600;
   color: var(--tz-fg-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .match-card__names .loser { color: var(--tz-fg-4); font-weight: 500; }
 .match-card__vs { color: var(--tz-fg-5); font-weight: 500; margin: 0 6px; }

@@ -4,6 +4,13 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
+/* App-like: no horizontal pan, no overscroll bounce that descuadra el layout */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
 body {
   font-family: var(--tz-font);
   font-size: var(--tz-text-md);
