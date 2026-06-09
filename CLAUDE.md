@@ -44,6 +44,8 @@ Fuente de verdad: [`app/models/match_scoring.rb`](app/models/match_scoring.rb) (
 
 ## Modelos / datos
 - **Player**: `name` (único, requerido), `dominant_hand` (`right|left|ambidextrous`, requerido),
+  `team` (lista fija en `Player::TEAMS`: Tecnología, Customer Success, Ventas, Onboarding, Soporte,
+  Finanzas, RRHH, Revops; **opcional** en DB porque hay jugadores previos, pero el form lo exige),
   `age` (**opcional**, vive en la DB pero NO se pide en el producto), `active` (archivado).
   Borrar un jugador con partidos lo **archiva** (`active=false`); sin partidos se borra de verdad.
 - **Match**: `winner`/`loser` (FK a players), `target` (11|21), `winner_score`/`loser_score`
@@ -61,13 +63,14 @@ Fuente de verdad: [`app/models/match_scoring.rb`](app/models/match_scoring.rb) (
 
 ## Frontend (pantallas)
 Mobile-first, una `app` centrada (max 560px), bottom-nav de 5 ítems.
-- **Ranking** (`/`, landing): toggle **Puntos / % Victorias**. Líder con barra superior violeta.
-  En % marca "Pocos partidos" si `< 3 PJ`.
+- **Ranking** (`/`, landing): toggle **Puntos / % Victorias / Equipos**. Líder con barra superior violeta.
+  En % marca "Pocos partidos" si `< 3 PJ`. **Equipos** agrupa el ranking por `team` y **suma** los puntos
+  de sus integrantes (se calcula en el front desde la respuesta de `/ranking`, que ahora trae `team`).
 - **Registrar** (`/registrar`): **flujo result-first**. Eliges 2 jugadores → anotas el marcador →
   el sistema **deduce el ganador** (mayor puntaje) y **preselecciona el tipo**:
   marcador más alto **≥ 21 → a 21**, si no **a 11** (editable; cubre el caso raro de un a-11 a 30–28).
   Hay un atajo opcional **"Registrar sin marcador"** (solo ganador), porque el resultado es opcional.
-- **Jugadores** (`/jugadores`): crear/editar (nombre + mano hábil) / archivar. PIN para escribir.
+- **Jugadores** (`/jugadores`): crear/editar (nombre + mano hábil + equipo) / archivar. PIN para escribir.
 - **Historial** (`/historial`): feed de partidos, borrar con PIN.
 - **Reglas** (`/reglas`): definición de puntajes (estática) con sección "por definir".
 - **PIN**: contexto + bottom-sheet ([`auth/PinProvider.jsx`](app/frontend/auth/PinProvider.jsx)),

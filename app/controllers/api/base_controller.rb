@@ -35,6 +35,7 @@ module Api
         age: player.age,
         dominant_hand: player.dominant_hand,
         active: player.active,
+        team: player.team,
       }
     end
 

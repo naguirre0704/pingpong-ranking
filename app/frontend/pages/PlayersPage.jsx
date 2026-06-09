@@ -3,6 +3,7 @@ import { Pencil, Archive, Plus } from 'lucide-react'
 import { useCreatePlayer, useDeletePlayer, usePlayers, useUpdatePlayer } from '~/api/hooks'
 import { usePin } from '~/auth/PinProvider'
 import { HAND_LABEL } from '~/lib/format'
+import { TEAMS } from '~/lib/teams'
 import { EmptyState } from '~/components/EmptyState'
 
 const HANDS = [
@@ -67,6 +68,7 @@ export function PlayersPage() {
               <div className="player-row__name">{p.name}</div>
               <div className="player-row__meta">
                 {HAND_LABEL[p.dominant_hand]}
+                {p.team && <> · {p.team}</>}
               </div>
             </div>
             <button className="icon-btn" aria-label="Editar" onClick={() => openEdit(p)}>
@@ -94,19 +96,20 @@ export function PlayersPage() {
 function PlayerForm({ initial, onSave, onCancel, busy }) {
   const [name, setName] = useState(initial.name || '')
   const [hand, setHand] = useState(initial.dominant_hand || 'right')
+  const [team, setTeam] = useState(initial.team || '')
   const [error, setError] = useState('')
 
   const submit = async (e) => {
     e.preventDefault()
     setError('')
     try {
-      await onSave({ name: name.trim(), dominant_hand: hand })
+      await onSave({ name: name.trim(), dominant_hand: hand, team })
     } catch (err) {
       setError(err.message)
     }
   }
 
-  const valid = name.trim()
+  const valid = name.trim() && team
 
   return (
     <div className="sheet" role="dialog" aria-modal="true">
@@ -129,6 +132,15 @@ function PlayerForm({ initial, onSave, onCancel, busy }) {
               </button>
             ))}
           </div>
+        </div>
+        <div className="field">
+          <span className="field__label">Equipo</span>
+          <select className="select" value={team} onChange={(e) => setTeam(e.target.value)}>
+            <option value="" disabled>Selecciona equipo</option>
+            {TEAMS.map((t) => (
+              <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
         </div>
 
         {error && <div className="form-error">{error}</div>}

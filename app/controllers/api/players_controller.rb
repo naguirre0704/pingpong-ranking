@@ -41,7 +41,7 @@ module Api
     end
 
     def player_params
-      params.require(:player).permit(:name, :age, :dominant_hand, :active)
+      params.require(:player).permit(:name, :age, :dominant_hand, :active, :team)
     end
   end
 end
