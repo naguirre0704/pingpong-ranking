@@ -4,12 +4,15 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
-/* App-like: no horizontal pan, no overscroll bounce that descuadra el layout */
+/* App-like: no horizontal pan, no overscroll bounce that descuadra el layout.
+   Usamos overflow-x: clip (no `hidden`) para no convertir <html>/<body> en
+   contenedor de scroll: en PWA standalone eso rompía el scroll vertical y el
+   position: sticky del appbar. */
 html, body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
-  overscroll-behavior: none;
+  overflow-x: clip;
+  overscroll-behavior-y: none;
 }
 body {
   font-family: var(--tz-font);
