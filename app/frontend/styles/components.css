@@ -248,5 +248,53 @@
 .sheet__actions { display: flex; gap: var(--tz-space-3); margin-top: var(--tz-space-6); }
 .sheet__actions .btn { flex: 1; }
 
+/* ---- Season banner (aviso cierre Q2 / marcha blanca) ---- */
+.season-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tz-space-3);
+  margin-bottom: var(--tz-space-5);
+  padding: var(--tz-space-4);
+  background: var(--tz-violet-50);
+  border: 1px solid var(--tz-violet-100);
+  border-radius: var(--tz-radius-lg);
+}
+.season-banner__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--tz-radius-pill);
+  background: var(--tz-violet-500);
+  color: #fff;
+}
+.season-banner__body { flex: 1; min-width: 0; }
+.season-banner__title {
+  font-size: var(--tz-text-sm);
+  font-weight: 700;
+  color: var(--tz-violet-700);
+  letter-spacing: -.01em;
+}
+.season-banner__text {
+  margin-top: 2px;
+  font-size: var(--tz-text-sm);
+  line-height: 1.4;
+  color: var(--tz-fg-2);
+}
+.season-banner__close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: -4px -4px 0 0;
+  border: 0;
+  border-radius: var(--tz-radius-pill);
+  background: transparent;
+  color: var(--tz-violet-600);
+}
+.season-banner__close:active { background: var(--tz-violet-100); }
+
 /* ---- States ---- */
 .loading { padding: var(--tz-space-12); text-align: center; color: var(--tz-fg-4); font-size: var(--tz-text-sm); }

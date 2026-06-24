@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { BottomNav } from './BottomNav'
+import { SeasonBanner } from './SeasonBanner'
 import logoUrl from '~/images/tazki-logo.png'
 
 export function Layout() {
@@ -14,6 +15,7 @@ export function Layout() {
       </header>
 
       <main className="app__main">
+        <SeasonBanner />
         <Outlet />
       </main>
 
