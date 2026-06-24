@@ -4,7 +4,7 @@ import { api } from './client'
 const keys = {
   ranking: ['ranking'],
   players: (all) => ['players', { all: !!all }],
-  matches: (limit) => ['matches', { limit }],
+  matches: (params) => ['matches', params],
 }
 
 // ---- Queries ----
@@ -22,10 +22,17 @@ export function usePlayers({ all = false } = {}) {
   })
 }
 
-export function useMatches({ limit = 100 } = {}) {
+export function useMatches({ limit = 100, playerA, playerB } = {}) {
+  const params = new URLSearchParams({ limit })
+  // Solo filtramos por pareja cuando tenemos a los dos jugadores.
+  const h2h = playerA != null && playerB != null
+  if (h2h) {
+    params.set('player_a', playerA)
+    params.set('player_b', playerB)
+  }
   return useQuery({
-    queryKey: keys.matches(limit),
-    queryFn: () => api(`/matches?limit=${limit}`).then((d) => d.matches),
+    queryKey: keys.matches({ limit, playerA: h2h ? String(playerA) : null, playerB: h2h ? String(playerB) : null }),
+    queryFn: () => api(`/matches?${params.toString()}`).then((d) => d.matches),
   })
 }
 

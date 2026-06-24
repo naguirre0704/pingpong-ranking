@@ -16,6 +16,10 @@ class Match < ApplicationRecord
   before_save :assign_points
 
   scope :recent, -> { order(played_at: :desc, id: :desc) }
+  # Partidos entre dos jugadores, sin importar quién ganó.
+  scope :between, ->(a, b) {
+    where(winner_id: a, loser_id: b).or(where(winner_id: b, loser_id: a))
+  }
 
   # True when a full result was recorded (both scores present).
   def result_recorded?

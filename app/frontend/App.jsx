@@ -7,6 +7,7 @@ import { RankingPage } from '~/pages/RankingPage'
 import { NewMatchPage } from '~/pages/NewMatchPage'
 import { PlayersPage } from '~/pages/PlayersPage'
 import { HistoryPage } from '~/pages/HistoryPage'
+import { HeadToHeadPage } from '~/pages/HeadToHeadPage'
 import { RulesPage } from '~/pages/RulesPage'
 
 const queryClient = new QueryClient({
@@ -26,6 +27,7 @@ export function App() {
               <Route path="registrar" element={<NewMatchPage />} />
               <Route path="jugadores" element={<PlayersPage />} />
               <Route path="historial" element={<HistoryPage />} />
+              <Route path="historial/entre/:aId/:bId" element={<HeadToHeadPage />} />
               <Route path="reglas" element={<RulesPage />} />
             </Route>
           </Routes>

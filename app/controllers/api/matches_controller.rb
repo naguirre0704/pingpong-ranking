@@ -4,9 +4,11 @@ module Api
     before_action :set_match, only: %i[update destroy]
 
     def index
-      matches = Match.recent
-                     .includes(:winner, :loser)
-                     .limit(limit)
+      matches = Match.recent.includes(:winner, :loser)
+      if params[:player_a].present? && params[:player_b].present?
+        matches = matches.between(params[:player_a], params[:player_b])
+      end
+      matches = matches.limit(limit)
       render json: { matches: matches.map { |m| match_json(m) } }
     end
 

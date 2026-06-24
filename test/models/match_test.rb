@@ -48,4 +48,14 @@ class MatchTest < ActiveSupport::TestCase
     m = Match.new(winner: @ana, loser: @beto, target: 11)
     assert m.valid?, m.errors.full_messages.to_sentence
   end
+
+  test "between trae los partidos entre dos jugadores en cualquier orden" do
+    carla = Player.create!(name: "Carla", dominant_hand: "right")
+    ab1 = Match.create!(winner: @ana, loser: @beto, target: 11)
+    ab2 = Match.create!(winner: @beto, loser: @ana, target: 21) # rol invertido
+    Match.create!(winner: @ana, loser: carla, target: 11)       # otra pareja
+
+    pair = Match.between(@ana.id, @beto.id)
+    assert_equal [ab1.id, ab2.id].sort, pair.pluck(:id).sort
+  end
 end
